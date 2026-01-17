@@ -70,7 +70,7 @@ const buttonInfo = {
     "DrewMatica": "Visit DrewMatica website. AI Study Tutor (TESTINGs PHRASE).",
     "PromeTheus": "Visit PromeTheus. AI-powered PROMPT generator for various purposes.",
     "Drastica": "Explore Drastica. AI-powered chat interface.",
-    "Echoes": "Listen to Echoes. Past insights reflected.",
+    "Other Bots": "Older Bots ever made. Past insights reflected.",
     "Ascension": "Witness Ascension. Advanced stages of foresight."
 };
 
