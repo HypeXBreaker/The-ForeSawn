@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya's Vibe Blog</title>
+<style>
+  /* ====== VARIABLES ====== */
+  :root {
+    --warm-bg: #fef6e4;
+    --warm-text: #3e3e3e;
+    --accent: #f08a5d;
+    --dark-bg: #1a1a1a;
+    --dark-text: #eaeaea;
+    --font: 'Poppins', sans-serif;
+    --transition-speed: 0.5s;
+  }
+
+  /* ====== GLOBAL STYLES ====== */
+  * { margin:0; padding:0; box-sizing:border-box; font-family: var(--font);}
+  body { 
+    background: var(--warm-bg); 
+    color: var(--warm-text); 
+    overflow-x:hidden; 
+    transition: background var(--transition-speed), color var(--transition-speed);
+    position: relative;
+  }
+  a { color: var(--accent); text-decoration:none; }
+
+  /* ====== HEADER ====== */
+  header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    position: relative;
+    z-index: 2;
+  }
+  header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    animation: popIn 1s ease forwards;
+  }
+  header p {
+    font-size: 1.2rem;
+    color: #555;
+    min-height: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  /* ====== DARK MODE TOGGLE ====== */
+  #darkToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    z-index: 10;
+  }
+  #darkToggle:hover { transform: scale(1.1); }
+
+  /* ====== SECTIONS ====== */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+  }
+  section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  section h2::after {
+    content: '';
+    width: 50px;
+    height: 4px;
+    background: var(--accent);
+    display: block;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    animation: slideIn 1s ease forwards;
+  }
+
+  /* ====== CARDS ====== */
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .card {
+    background: #fff8f0;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    width: 250px;
+    text-align: center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card:hover {
+    transform: translateY(-10px) rotate(1deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .card h3 { margin-bottom: 1rem; }
+  .card p { font-size: 0.9rem; color: #555; }
+
+  /* ====== CARD SPARKLES ====== */
+  .sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkleMove 1.5s linear infinite;
+  }
+  @keyframes sparkleMove {
+    0% { transform: translateY(0) scale(1);}
+    50% { transform: translateY(-10px) scale(0.5);}
+    100% { transform: translateY(0) scale(1);}
+  }
+
+  /* ====== BACKGROUND CANVAS ====== */
+  #bgCanvas {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+  }
+
+  /* ====== FLOATING EMOJIS ====== */
+  .emoji {
+    position: fixed;
+    font-size: 2rem;
+    user-select: none;
+    z-index:0;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  /* ====== ANIMATIONS ====== */
+  @keyframes popIn {
+    0% { opacity:0; transform: scale(0.5) rotate(-10deg); }
+    100% { opacity:1; transform: scale(1) rotate(0deg); }
+  }
+  @keyframes slideIn {
+    0% { width:0; }
+    100% { width:50px; }
+  }
+  @keyframes fadeUp {
+    0% { opacity:0; transform: translateY(20px); }
+    100% { opacity:1; transform: translateY(0); }
+  }
+  .slide-left { transform: translateX(-50px); opacity:0; transition: all 1s ease;}
+  .slide-left.show { transform: translateX(0); opacity:1;}
+  .slide-right { transform: translateX(50px); opacity:0; transition: all 1s ease;}
+  .slide-right.show { transform: translateX(0); opacity:1;}
+</style>
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+
+<button id="darkToggle">🌙</button>
+
+<header>
+  <h1>Aditya</h1>
+  <p id="typewriter"></p>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <div class="cards">
+    <div class="card slide-left">
+      <h3>Who Am I?</h3>
+      <p>A curious student obsessed with AI, coding, and bringing ideas to life through designs & projects.</p>
+    </div>
+    <div class="card slide-right">
+      <h3>What I Do</h3>
+      <p>Create AI bots, websites, and other fun experimental digital stuff while exploring creativity.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Achievements</h2>
+  <div class="cards">
+    <div class="card slide-left">
+      <h3>AI Bot Project</h3>
+      <p>Built multiple AI bots with unique personalities and functionalities.</p>
+    </div>
+    <div class="card slide-right">
+      <h3>Web Design</h3>
+      <p>Crafted fully animated websites & UIs with smooth interactions.</p>
+    </div>
+    <div class="card slide-left">
+      <h3>Learning Spree</h3>
+      <p>Constantly leveling up in programming, AI, and tech innovations.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Contact</h2>
+  <div class="cards">
+    <div class="card slide-right">
+      <h3>Email</h3>
+      <p>aditya@example.com</p>
+    </div>
+    <div class="card slide-left">
+      <h3>Social</h3>
+      <p>Twitter / GitHub / LinkedIn</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ====== TYPEWRITER ======
+  const typewriterEl = document.getElementById('typewriter');
+  const phrases = ["Vibeful. Creative. Alive.", "My little world in code.", "AI obsessed & full of ideas!"];
+  let i = 0, j = 0, currentPhrase = '', isDeleting = false;
+
+  function typeWriter() {
+    if(i >= phrases.length) i=0;
+    const fullText = phrases[i];
+    if(!isDeleting) {
+      currentPhrase = fullText.substring(0,j+1);
+      j++;
+      typewriterEl.textContent = currentPhrase;
+      if(j===fullText.length){ isDeleting=true; setTimeout(typeWriter,1000); return;}
+    } else {
+      currentPhrase = fullText.substring(0,j-1);
+      j--;
+      typewriterEl.textContent = currentPhrase;
+      if(j===0){ isDeleting=false; i++; setTimeout(typeWriter,500); return;}
+    }
+    setTimeout(typeWriter,100);
+  }
+  typeWriter();
+
+  // ====== DARK MODE ======
+  const toggle = document.getElementById('darkToggle');
+  toggle.addEventListener('click', ()=>{
+    document.body.classList.toggle('dark');
+    if(document.body.classList.contains('dark')){
+      document.body.style.background = 'var(--dark-bg)';
+      document.body.style.color = 'var(--dark-text)';
+    } else {
+      document.body.style.background = 'var(--warm-bg)';
+      document.body.style.color = 'var(--warm-text)';
+    }
+  });
+
+  // ====== MOVING BG ======
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  for(let i=0;i<120;i++){
+    particles.push({
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      r: Math.random()*2+1,
+      dx: (Math.random()-0.5)*0.5,
+      dy: (Math.random()-0.5)*0.5,
+      alpha: Math.random()*0.5+0.3
+    });
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x += p.dx;
+      p.y += p.dy;
+      if(p.x>canvas.width)p.x=0;
+      if(p.x<0)p.x=canvas.width;
+      if(p.y>canvas.height)p.y=0;
+      if(p.y<0)p.y=canvas.height;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(240,138,93,${p.alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize', ()=>{
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  // ====== CARD SPARKLES ======
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card=>{
+    card.addEventListener('mouseenter', ()=>{
+      for(let i=0;i<10;i++){
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random()*card.offsetWidth+'px';
+        sparkle.style.top = Math.random()*card.offsetHeight+'px';
+        card.appendChild(sparkle);
+        setTimeout(()=>sparkle.remove(),1500);
+      }
+    });
+  });
+
+  // ====== SCROLL ANIMATION ======
+  const slideElements = document.querySelectorAll('.slide-left, .slide-right');
+  function slideInView(){
+    const triggerBottom = window.innerHeight * 0.85;
+    slideElements.forEach(el=>{
+      const top = el.getBoundingClientRect().top;
+      if(top < triggerBottom){
+        el.classList.add('show');
+      }
+    });
+  }
+  window.addEventListener('scroll', slideInView);
+  slideInView();
+
+  // ====== FLOATING EMOJIS ======
+  const emojis = ["✨","💫","🌟","🔥","🎯","🌀"];
+  for(let i=0;i<15;i++){
+    const e = document.createElement('div');
+    e.classList.add('emoji');
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.top = Math.random()*window.innerHeight+'px';
+    e.style.left = Math.random()*window.innerWidth+'px';
+    e.style.fontSize = (Math.random()*2+1)+'rem';
+    document.body.appendChild(e);
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>THE FORESAWN</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body class="dark">
+
+    <!-- Overlay -->
+    <div id="overlay"></div>
+
+    <!-- Theme Toggle -->
+    <button id="themeToggle" aria-label="Toggle theme">☽</button>
+
+    <main class="container">
+
+        <!-- Title -->
+        <h1 id="title">
+            <span class="slash"></span>
+            THE FORESAWN
+        </h1>
+
+        <!-- Info Panel -->
+        <section id="infoPanel">
+            <p id="typeText"></p>
+        </section>
+
+        <!-- Navigation -->
+        <nav id="nav">
+            <div class="column left">
+                <button type="button" formaction="archives.html" onclick="location.href=this.getAttribute('formaction')">Archives</button>
+                <button type="button" formaction="chronicles.html" onclick="location.href=this.getAttribute('formaction')">Chronicles</button>
+                <button type="button" formaction="visions.html" onclick="location.href=this.getAttribute('formaction')">Visions</button>
+                <button type="button" formaction="codex.html" onclick="location.href=this.getAttribute('formaction')">Codex</button>
+                <button type="button" formaction="origins/origins.html" onclick="location.href=this.getAttribute('formaction')">Origins</button>
+            </div>
+
+            <div class="column right">
+                <button type="button" formaction="https://hypexbreaker.github.io/DrewMatica-website/index.html" onclick="window.open(this.getAttribute('formaction'), '_blank')">DrewMatica</button>
+                <button type="button" formaction="https://hypexbreaker.github.io/The-ForeSawn/bots/promo/prometheus.html" onclick="window.open(this.getAttribute('formaction'), '_blank')">PromeTheus</button>
+                <button type="button" formaction="https://hypexbreaker.github.io/Drastica" onclick="window.open(this.getAttribute('formaction'), '_blank')">Drastica</button>
+                <button type="button" formaction="echoes.html" onclick="location.href=this.getAttribute('formaction')">Echoes</button>
+                <button type="button" formaction="ascension.html" onclick="location.href=this.getAttribute('formaction')">Ascension</button>
+            </div>
+        </nav>
+
+        <!-- Hover Info Panel -->
+        <div id="hoverInfoPanel">
+            <p id="hoverInfoText"></p>
+        </div>
+
+    </main>
+
+    <!-- Footer Strip -->
+    <footer id="footer">
+        <span class="clickable" data-action="contact">CONTACT</span>
+        <span class="clickable" data-action="madeby">MADE BY</span>
+        <span class="static">THE FORESAWN</span>
+        <span class="static">© 2026</span>
+    </footer>
+
+    <!-- VIDEO BACKGROUND -->
+    <video id="bgVideo" autoplay muted loop playsinline>
+        <source src="https://motionbgs.com/dl/4k/8944" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <script src="script.js"></script>
+</body>
+</html>
