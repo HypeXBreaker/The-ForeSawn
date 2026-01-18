@@ -71,7 +71,7 @@ const buttonInfo = {
     "PromeTheus": "Visit PromeTheus. AI-powered PROMPT generator for various purposes.",
     "Drastica": "Explore Drastica. AI-powered chat interface.",
     "BOTs": "Older Bots ever made. Past insights reflected.",
-    "Ascension": "Witness Ascension. Advanced stages of foresight."
+    "Resona": "Witness Resona. Simple Free Spotify + Queue System."
 };
 
 // Add hover listeners
